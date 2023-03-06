@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p>hello, welcome the the poem store</p>
+  
+  <form method="POST" action="{{url_for('index')}}">
+    <input name="content" type="text">
+    <input type="submit" value="add">
+  </form>
+  {% for poem in poems %}
+  <div style="border:2px solid ; margin:5px;"class="poems">
+    {{ poem.content }}
+  </div>
+  {% endfor %}
+</body>
+</html>
