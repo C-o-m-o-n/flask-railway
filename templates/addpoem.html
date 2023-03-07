@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+<body>
+  
+{% block content %}
+<div class="container">
+  <form  method="POST" action="{{url_for('addpoem')}}">
+    <div class="mb-3">
+    <input class="form-control" placeholder="enter title" name="title" type="text">
+    </div>
+    
+    <div class="mb-3">
+    <textarea class="form-control" placeholder="enter poem content"name="content" type="text">
+    </textarea>
+    </div>
+    
+    <div class="mb-3">
+    <input class="form-control" placeholder="author name"name="author" type="text">
+    </div>
+    
+    <input type="submit" class="btn btn-primary" value="add">
+  </form>
+  </div>
+{% endblock content %}
+
+</body>

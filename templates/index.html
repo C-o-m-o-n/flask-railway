@@ -1,22 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+
+<body >
+{% block content %}
   <p>hello, welcome the the poem store</p>
-  
-  <form method="POST" action="{{url_for('index')}}">
-    <input name="content" type="text">
-    <input type="submit" value="add">
-  </form>
-  {% for poem in poems %}
-  <div style="border:2px solid ; margin:5px;"class="poems">
-    {{ poem.content }}
-  </div>
+    {% for poem in poems %}
+  <div class=" container mb-3">
+ <div class="card" style="width: 25rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ poem.title }}</h5>
+    <p class="card-text">{{ poem.content[:20] }}....</p>
+    <p class="author" >by {{ poem.author }}</p>
+    <p class="date" > on {{ poem.date_posted }}</p>
+    <a href="{{ url_for('poem', poem_id=poem.id)}}" class="btn btn-primary">read</a>
+</div>
+</div>
+</div>
   {% endfor %}
+{% endblock content %}
 </body>
+
 </html>

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+<body>
+{% block content %}
+  <div class="container">
+ <div class="card" style="width: 28rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ poem.title }}</h5>
+    <p class="card-text">{{ poem.content }}</p>
+    <p>by {{ poem.author }}</p>
+    <p> on {{ poem.date_posted }}</p>
+    <a href="{{ url_for('delete', poem_id=poem.id)}}" class="btn btn-danger">delete</a>
+  </div>
+</div>
+</div>
+
+{% endblock content %}
+</body>
+</html>

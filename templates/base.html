@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>poem</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+<!--   custom css -->
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+  <script defer src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script> 
+  <script defer src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script> 
+  
+  
+  
+  <style>
+    
+    .author{
+      color: $yellow-300;
+    }
+  </style>
+  
+  
+</head>
+<body>
+  <nav class="nav justify-content-end">
+  <a class="nav-link active" aria-current="page" href="#">Active</a>
+  <a class="nav-link" href="{{url_for('index')}}">Home</a>
+  <a class="nav-link" href="{{ url_for('addpoem')}}">add post</a>
+  <a class="nav-link disabled">Disabled</a>
+</nav>
+  {% block content%}
+  
+  {% endblock content%}
+</body>
+</html>
