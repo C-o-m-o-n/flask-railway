@@ -5,11 +5,15 @@
   <div class="container">
  <div class="card" style="width: 28rem;">
   <div class="card-body">
+    <div class="mb-3">
+
+      <img style="width:100%; height:auto;" src="{{ url_for('static',filename='assets/poem_img/' + poem.post_img) }}">
+    </div>
     <h5 class="card-title">{{ poem.title }}</h5>
     <p class="card-text">{{ poem.content }}</p>
-    <p>by {{ poem.author }}</p>
     <p> on {{ poem.date_posted }}</p>
     <a href="{{ url_for('delete', poem_id=poem.id)}}" class="btn btn-danger">delete</a>
+
   </div>
 </div>
 </div>

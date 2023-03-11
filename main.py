@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, redirect, request, url_for
+from flask import Flask, jsonify, render_template, redirect, request, url_for, flash
 import os
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, time
@@ -30,13 +30,19 @@ def addpoem():
     poem_title = request.form['title']
     poem_content = request.form['content']
     poem_author = request.form['author']
-    poem= Poems(date_posted=datetime.now(), title=poem_title, content=poem_content, author=poem_author)
-    db.create_all()
-    db.session.add(poem)
-    db.session.commit()
-    return redirect(url_for('index'))
-  else:
-    print('error')
+    if poem_title and poem_content and poem_author:
+      poem= Poems(date_posted=datetime.now(), title=poem_title, content=poem_content, author=poem_author)
+      db.create_all()
+      db.session.add(poem)
+      db.session.commit()
+      flash('poem added successfully', 'success')
+      return redirect(url_for('index'))
+    elif not poem_title:
+      flash('plese enter the title', 'error')
+    elif not poem_content:
+      flash('plese enter the verse', 'error')
+    elif not poem_author:
+      flash('plese enter the author', 'error')
   return render_template('addpoem.html')
   
 @app.route('/poem/<int:poem_id>')
@@ -50,6 +56,7 @@ def delete(poem_id):
   poem_del = Poems.query.filter_by(id=poem_id).first()
   db.session.delete(poem_del)
   db.session.commit()
+  flash('poem deleted successfully', 'success')
   return redirect(url_for('index'))
 
 

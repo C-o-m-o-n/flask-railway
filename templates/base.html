@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>poem</title>
+  <title>Comon</title>
+</head>
+<body>
+  
   <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.css')}}">
   <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
 <!--   custom css -->
@@ -24,14 +27,44 @@
   
 </head>
 <body>
-  <nav class="nav justify-content-end mb-3">
- 
-  <a class="nav-link" href="{{url_for('index')}}">Home</a>
+  <nav class="nav justify-content-end">
+  <a class="nav-link active" aria-current="page" href="{{url_for('index')}}">Home</a>
   <a class="nav-link" href="{{ url_for('addpoem')}}">add poem</a>
- 
+  <a class="nav-link" href="{{url_for('login')}}">Login</a>
+  <a class="nav-link" href="{{url_for('register')}}">Register</a>
+  <a class="nav-link disabled">Disabled</a>
 </nav>
+<div>
+{% with messages=get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for categoriy, message in messages %}
+    
+    {% if categoriy == 'error' %}
+    <div class="alert alert-danger alert-dismissable fade show " role="alert">
+      <p>{{ message }}</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="close" >
+        <span aria-hidden="true">x</span>
+      </button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alert-dismissable fade show " role="alert">
+      <p>{{ message }}</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="close" >
+        <span aria-hidden="true">x</span>
+      </button>
+    </div>
+    {% endif %}
+    
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+</div>
+
   {% block content%}
   
   {% endblock content%}
+  
+  
 </body>
 </html>
